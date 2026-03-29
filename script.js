@@ -2,7 +2,7 @@ const toDoInput = document.getElementById("todo-input");
 const addTaskBtn = document.getElementById("add-task-btn");
 const toDoList = document.getElementById("todo-list");
 
-let task = [];
+let tasks = [];
 addTaskBtn.addEventListener("click", function () {
   const taskText = toDoInput.value.trim();
   if (taskText === "") return;
@@ -12,6 +12,11 @@ addTaskBtn.addEventListener("click", function () {
     completed: false,
   };
   task.push(newTask);
+  saveTask();
   toDoInput.value = ""; //clears the input field
-  console.log(task);
+  console.log(tasks);
 });
+
+function saveTask() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
