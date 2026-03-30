@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   <span>${task.text}</span>
   <button>delete</button>
   `;
-    toDoList.appendChild(li);
 
     li.addEventListener("click", (e) => {
       if (e.target.tagName == "BUTTON") return;
@@ -37,6 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
       saveTask();
     });
 
+    li.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation();
+      tasks = tasks.filter((t) => t.id !== task.id);
+      li.remove();
+      saveTask();
+    });
+
+    toDoList.appendChild(li);
     console.log("working");
   }
   function saveTask() {
